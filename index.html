@@ -37,23 +37,27 @@
 
 <script>
 // Número de fotos que tens na pasta (ajusta consoante o teu caso)
-const totalFotos = 464; // exemplo com 10 fotos, muda para 500 se quiseres
+const totalFotos = 463; // exemplo com 10 fotos, muda para 500 se quiseres
+
+// Gera array com os nomes reais gerados pelo Windows: Foto (1).jpg, Foto (2).jpg, ...
+for (let i = 1; i <= totalFotos; i++) {
+  fotos.push(`Foto (${i}).jpg`);
+}
 
 const galeria = document.getElementById("galeria");
 
-for (let i = 1; i <= totalFotos; i++) {
-  let nomeFoto = `foto${i}.jpg`;
+fotos.forEach((nomeFoto, i) => {
   let div = document.createElement("div");
   div.className = "foto";
   div.innerHTML = `
     <img src="fotos/${nomeFoto}" alt="${nomeFoto}">
     <div class="checkboxes">
-      <label><input type="checkbox" name="foto${i}" value="${nomeFoto} - 10x15"> 10x15</label><br>
-      <label><input type="checkbox" name="foto${i}" value="${nomeFoto} - 15x20"> 15x20</label>
+      <label><input type="checkbox" name="foto${i+1}" value="${nomeFoto} - 10x15"> 10x15</label><br>
+      <label><input type="checkbox" name="foto${i+1}" value="${nomeFoto} - 15x20"> 15x20</label>
     </div>
   `;
   galeria.appendChild(div);
-}
+});
 
 document.getElementById("pedidoForm").addEventListener("submit", function(e) {
   let selecionadas = [];
