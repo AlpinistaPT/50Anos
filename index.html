@@ -2,7 +2,7 @@
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
-  <title>Seleção de Fotos</title>
+  <title>Evento dos 50 Anos de casamento do Zé e da Lúcia</title>
   <style>
     body { font-family: Arial, sans-serif; max-width: 1000px; margin: auto; }
     .galeria { display: flex; flex-wrap: wrap; gap: 20px; }
@@ -15,9 +15,11 @@
   </style>
 </head>
 <body>
-
-<h2>Escolha as suas fotos</h2>
-<p>Selecione o(s) tamanho(s) desejado(s) para cada foto e depois preencha os seus dados.</p>
+<div class="logo">
+  <img src="logo.png" alt="Logo do Fotógrafo">
+</div>
+<h2>Se pretende adquirir fotos impressas, faça a sua seleção de Fotos do evento dos 50 Anos de casamento do Zé e da Lúcia</h2>
+<p>Selecione o(s) tamanho(s) desejado(s) para cada foto e depois preencha os seus dados. As fotos 10x15 têm um custo de 1€ cada e as fotos 15x20 têm um custo unitário de 2€.</p>
 
 <div id="galeria" class="galeria">
   <!-- As fotos serão geradas aqui via JavaScript -->
@@ -25,8 +27,8 @@
 
 <h3>Os seus dados</h3>
 <form id="pedidoForm" action="https://formspree.io/f/mjkeneav" method="POST">
-  <label>Nome:<br><input type="text" name="nome" required></label><br><br>
-  <label>Email:<br><input type="text" name="morada" required></label><br><br>
+  <label>Nome:<br><input type="text" name="nome" required style="width: 400px; padding: 5px;"></label><br><br>
+  <label>Email:<br><input type="text" name="morada" required style="width: 300px; padding: 5px;"></label><br><br>
   <label>Telemóvel:<br><input type="text" name="contacto" required></label><br><br>
   
   <label>Fotos escolhidas</label><br>
@@ -68,6 +70,6 @@ document.getElementById("pedidoForm").addEventListener("submit", function(e) {
   document.getElementById("fotosEscolhidas").value = selecionadas.join("\n");
 });
 </script>
-
+<br><br><br>
 </body>
 </html>
