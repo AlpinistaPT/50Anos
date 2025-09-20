@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Seleção de Fotos</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 1000px; margin: auto; }
+    .galeria { display: flex; flex-wrap: wrap; gap: 20px; }
+    .foto { width: 200px; text-align: center; }
+    img { width: 100%; border-radius: 8px; }
+    .checkboxes { margin-top: 5px; text-align: left; }
+    form { margin-top: 30px; }
+    textarea { width: 100%; height: 150px; }
+    .submit-btn { padding: 10px 20px; font-size: 16px; }
+  </style>
+</head>
+<body>
+
+<h2>Escolha as suas fotos</h2>
+<p>Selecione o(s) tamanho(s) desejado(s) para cada foto e depois preencha os seus dados.</p>
+
+<div id="galeria" class="galeria">
+  <!-- As fotos serão geradas aqui via JavaScript -->
+</div>
+
+<h3>Os seus dados</h3>
+<form id="pedidoForm" action="https://formspree.io/f/SEU_ID_AQUI" method="POST">
+  <label>Nome:<br><input type="text" name="nome" required></label><br><br>
+  <label>Morada:<br><input type="text" name="morada" required></label><br><br>
+  <label>Contacto:<br><input type="text" name="contacto" required></label><br><br>
+  
+  <label>Fotos escolhidas:</label><br>
+  <textarea name="fotos" id="fotosEscolhidas" readonly></textarea><br><br>
+
+  <button type="submit" class="submit-btn">Enviar Pedido</button>
+</form>
+
+<script>
+// Número de fotos que tens na pasta (ajusta consoante o teu caso)
+const totalFotos = 10; // exemplo com 10 fotos, muda para 500 se quiseres
+
+const galeria = document.getElementById("galeria");
+
+for (let i = 1; i <= totalFotos; i++) {
+  let nomeFoto = `foto${i}.jpg`;
+  let div = document.createElement("div");
+  div.className = "foto";
+  div.innerHTML = `
+    <img src="fotos/${nomeFoto}" alt="${nomeFoto}">
+    <div class="checkboxes">
+      <label><input type="checkbox" name="foto${i}" value="${nomeFoto} - 10x15"> 10x15</label><br>
+      <label><input type="checkbox" name="foto${i}" value="${nomeFoto} - 15x20"> 15x20</label>
+    </div>
+  `;
+  galeria.appendChild(div);
+}
+
+document.getElementById("pedidoForm").addEventListener("submit", function(e) {
+  let selecionadas = [];
+  let checks = document.querySelectorAll("input[type=checkbox]:checked");
+  checks.forEach(c => selecionadas.push(c.value));
+  document.getElementById("fotosEscolhidas").value = selecionadas.join("\n");
+});
+</script>
+
+</body>
+</html>
